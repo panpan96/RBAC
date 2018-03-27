@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.juphoon.app.mapper.AppVersionMapper" >
+  <resultMap id="BaseResultMap" type="com.juphoon.app.entity.AppVersion" >
+    <constructor >
+      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="version_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="version_code" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="update_instructions" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="file_size" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="log_url" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="download_file_url" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="app_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="create_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="change_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="status" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="mandatory_update" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="report_url" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    id, version_name, version_code, update_instructions, file_size, log_url, download_file_url,
+    app_id, create_time, change_time, status, mandatory_update, report_url
+  </sql>
+
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from app_install_package_version
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from app_install_package_version
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.juphoon.app.entity.AppVersion" >
+    insert into app_install_package_version (id, version_name, version_code,
+    update_instructions, file_size, log_url,
+    download_file_url, app_id, create_time,
+    change_time, status, mandatory_update,
+    report_url)
+    values (#{id,jdbcType=INTEGER}, #{versionName,jdbcType=VARCHAR}, #{versionCode,jdbcType=VARCHAR},
+    #{updateInstructions,jdbcType=VARCHAR}, #{fileSize,jdbcType=VARCHAR}, #{logUrl,jdbcType=VARCHAR},
+    #{downloadFileUrl,jdbcType=VARCHAR}, #{appId,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP},
+    #{changeTime,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER}, #{mandatoryUpdate,jdbcType=INTEGER},
+    #{reportUrl,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.juphoon.app.entity.AppVersion" >
+    insert into app_install_package_version
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="versionName != null" >
+        version_name,
+      </if>
+      <if test="versionCode != null" >
+        version_code,
+      </if>
+      <if test="updateInstructions != null" >
+        update_instructions,
+      </if>
+      <if test="fileSize != null" >
+        file_size,
+      </if>
+      <if test="logUrl != null" >
+        log_url,
+      </if>
+      <if test="downloadFileUrl != null" >
+        download_file_url,
+      </if>
+      <if test="appId != null" >
+        app_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="changeTime != null" >
+        change_time,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="mandatoryUpdate != null" >
+        mandatory_update,
+      </if>
+      <if test="reportUrl != null" >
+        report_url,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="versionName != null" >
+        #{versionName,jdbcType=VARCHAR},
+      </if>
+      <if test="versionCode != null" >
+        #{versionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="updateInstructions != null" >
+        #{updateInstructions,jdbcType=VARCHAR},
+      </if>
+      <if test="fileSize != null" >
+        #{fileSize,jdbcType=VARCHAR},
+      </if>
+      <if test="logUrl != null" >
+        #{logUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="downloadFileUrl != null" >
+        #{downloadFileUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="appId != null" >
+        #{appId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="changeTime != null" >
+        #{changeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="mandatoryUpdate != null" >
+        #{mandatoryUpdate,jdbcType=INTEGER},
+      </if>
+      <if test="reportUrl != null" >
+        #{reportUrl,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.juphoon.app.entity.AppVersion" >
+    update app_install_package_version
+    <set >
+      <if test="versionName != null" >
+        version_name = #{versionName,jdbcType=VARCHAR},
+      </if>
+      <if test="versionCode != null" >
+        version_code = #{versionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="updateInstructions != null" >
+        update_instructions = #{updateInstructions,jdbcType=VARCHAR},
+      </if>
+      <if test="fileSize != null" >
+        file_size = #{fileSize,jdbcType=VARCHAR},
+      </if>
+      <if test="logUrl != null" >
+        log_url = #{logUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="downloadFileUrl != null" >
+        download_file_url = #{downloadFileUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="appId != null" >
+        app_id = #{appId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="changeTime != null" >
+        change_time = #{changeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="mandatoryUpdate != null" >
+        mandatory_update = #{mandatoryUpdate,jdbcType=INTEGER},
+      </if>
+      <if test="reportUrl != null" >
+        report_url = #{reportUrl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.juphoon.app.entity.AppVersion" >
+    update app_install_package_version
+    set version_name = #{versionName,jdbcType=VARCHAR},
+      version_code = #{versionCode,jdbcType=VARCHAR},
+      update_instructions = #{updateInstructions,jdbcType=VARCHAR},
+      file_size = #{fileSize,jdbcType=VARCHAR},
+      log_url = #{logUrl,jdbcType=VARCHAR},
+      download_file_url = #{downloadFileUrl,jdbcType=VARCHAR},
+      app_id = #{appId,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      change_time = #{changeTime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=INTEGER},
+      mandatory_update = #{mandatoryUpdate,jdbcType=INTEGER},
+      report_url = #{reportUrl,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+<select id="getVersionList" resultType="com.juphoon.app.entity.vo.LatestVersionVo">
+
+  SELECT a.id,a.version_name,a.mandatory_update,a.version_code,a.update_instructions,a.log_url,a.download_file_url,a.create_time,a.change_time,a.report_url,b.download_page_url,b.download_page_url_suffix
+  FROM app_install_package_version as a
+  LEFT JOIN app_install_package b on a.app_id=b.id
+  where  a.app_id = #{appId} AND  status=1
+
+</select>
+
+  <select id="getIOSApp" resultType="com.juphoon.app.entity.vo.LatestVersionVo">
+
+    SELECT a.id,a.version_name,a.version_code,a.update_instructions,a.log_url,a.download_file_url,a.create_time,a.change_time,a.report_url,b.app_name,b.app_type,b.app_id,b.download_page_url,b.mandatory_update,b.download_page_url_suffix,b.mandatory_update
+    FROM app_install_package_version as a
+    LEFT JOIN app_install_package b  on a.app_id=b.id
+    where  b.download_page_url_suffix =#{downloadPageUrlSuffix}  AND  a.status=1
+    GROUP BY  a.change_time DESC LIMIT 1
+
+  </select>
+
+  <select id="getAppVersions" resultType="com.juphoon.app.entity.vo.LatestVersionVo">
+
+    SELECT a.id,a.version_name,a.version_code,a.update_instructions,a.log_url,a.download_file_url,a.create_time,a.change_time,a.report_url,b.app_name,b.app_type,b.app_id,b.download_page_url,b.mandatory_update,b.download_page_url_suffix,b.mandatory_update
+    FROM app_install_package_version as a
+    LEFT JOIN app_install_package b  on a.app_id=b.id
+    where b.download_page_url_suffix=#{suffix} AND  a.status=1
+
+  </select>
+
+  <delete id="deleteByAppId" parameterType="java.lang.Integer" >
+
+    update app_install_package_version
+    set status = 0
+    where app_id = #{appId,jdbcType=INTEGER}
+
+  </delete>
+
+
+  <update id="delVersion">
+
+    update app_install_package_version
+    set status = 0
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <update id="updateReportUrl">
+    update app_install_package_version
+    set report_url =  #{reportUrl}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+</mapper>

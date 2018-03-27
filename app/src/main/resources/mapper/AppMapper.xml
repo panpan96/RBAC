@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.juphoon.app.mapper.AppMapper" >
+  <resultMap id="BaseResultMap" type="com.juphoon.app.entity.App" >
+    <constructor >
+      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="app_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="app_type" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="app_id" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="download_page_url" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="create_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="app_enable_password" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="app_password" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="user_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="download_page_url_suffix" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    id, app_name, app_type, app_id, download_page_url, create_time, app_enable_password,
+    app_password, user_id, download_page_url_suffix
+  </sql>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from app_install_package
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from app_install_package
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.juphoon.app.entity.App" >
+    insert into app_install_package (id, app_name, app_type,
+    app_id, download_page_url, create_time,
+    app_enable_password, app_password, user_id,
+    download_page_url_suffix)
+    values (#{id,jdbcType=INTEGER}, #{appName,jdbcType=VARCHAR}, #{appType,jdbcType=INTEGER},
+    #{appId,jdbcType=VARCHAR}, #{downloadPageUrl,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP},
+    #{appEnablePassword,jdbcType=INTEGER}, #{appPassword,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER},
+    #{downloadPageUrlSuffix,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.juphoon.app.entity.App" >
+    insert into app_install_package
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="appName != null" >
+        app_name,
+      </if>
+      <if test="appType != null" >
+        app_type,
+      </if>
+      <if test="appId != null" >
+        app_id,
+      </if>
+      <if test="downloadPageUrl != null" >
+        download_page_url,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="appEnablePassword != null" >
+        app_enable_password,
+      </if>
+      <if test="appPassword != null" >
+        app_password,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="downloadPageUrlSuffix != null" >
+        download_page_url_suffix,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="appName != null" >
+        #{appName,jdbcType=VARCHAR},
+      </if>
+      <if test="appType != null" >
+        #{appType,jdbcType=INTEGER},
+      </if>
+      <if test="appId != null" >
+        #{appId,jdbcType=VARCHAR},
+      </if>
+      <if test="downloadPageUrl != null" >
+        #{downloadPageUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="appEnablePassword != null" >
+        #{appEnablePassword,jdbcType=INTEGER},
+      </if>
+      <if test="appPassword != null" >
+        #{appPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="downloadPageUrlSuffix != null" >
+        #{downloadPageUrlSuffix,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.juphoon.app.entity.App" >
+    update app_install_package
+    <set >
+      <if test="appName != null" >
+        app_name = #{appName,jdbcType=VARCHAR},
+      </if>
+      <if test="appType != null" >
+        app_type = #{appType,jdbcType=INTEGER},
+      </if>
+      <if test="appId != null" >
+        app_id = #{appId,jdbcType=VARCHAR},
+      </if>
+      <if test="downloadPageUrl != null" >
+        download_page_url = #{downloadPageUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="appEnablePassword != null" >
+        app_enable_password = #{appEnablePassword,jdbcType=INTEGER},
+      </if>
+      <if test="appPassword != null" >
+        app_password = #{appPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="downloadPageUrlSuffix != null" >
+        download_page_url_suffix = #{downloadPageUrlSuffix,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.juphoon.app.entity.App" >
+    update app_install_package
+    set app_name = #{appName,jdbcType=VARCHAR},
+    app_type = #{appType,jdbcType=INTEGER},
+    app_id = #{appId,jdbcType=VARCHAR},
+    download_page_url = #{downloadPageUrl,jdbcType=VARCHAR},
+    create_time = #{createTime,jdbcType=TIMESTAMP},
+    app_enable_password = #{appEnablePassword,jdbcType=INTEGER},
+    app_password = #{appPassword,jdbcType=VARCHAR},
+    user_id = #{userId,jdbcType=INTEGER},
+    download_page_url_suffix = #{downloadPageUrlSuffix,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+
+
+  <select id="getAppList"  resultMap="BaseResultMap">
+
+    SELECT * FROM app_install_package
+    <where>
+      <if test="userId!=null">
+        user_id = #{userId}
+      </if>
+
+      <if test="appName!=null and appName!=''">
+        and app_name like #{appName}
+      </if>
+
+    </where>
+  </select>
+
+  <select id="selectByAppName" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from app_install_package
+    where app_name = #{appName}
+  </select>
+
+
+  <select id="getAppByName" parameterType="java.lang.String" resultMap="BaseResultMap">
+
+    SELECT * FROM app_install_package
+    where app_name LIKE #{appName}
+
+  </select>
+
+</mapper>
